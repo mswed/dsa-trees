@@ -16,6 +16,7 @@ class Tree {
 
   sumValues() {
     let total = 0;
+    // If the tree is empty return 0
     if (this.root === null) return total;
 
     const toVisitStack = [this.root];
@@ -23,6 +24,7 @@ class Tree {
       const current = toVisitStack.pop();
       total += current.val;
 
+      // Add the children to the stack
       if (current.children.length) {
         for (let child of current.children) {
           toVisitStack.push(child);
@@ -31,20 +33,56 @@ class Tree {
     }
     return total;
   }
+
+  /** countEvens(): count all of the nodes in the tree with even values. */
+
+  countEvens() {
+    let totalEvens = 0;
+
+    // If the tree is empty return 0
+    if (this.root === null) return totalEvens;
+
+    const toVisitStack = [this.root];
+    while (toVisitStack.length) {
+      const current = toVisitStack.pop();
+      if (current.val % 2 === 0) {
+        totalEvens++;
+      }
+
+      // Add the children to the stack
+      if (current.children.length) {
+        for (let child of current.children) {
+          toVisitStack.push(child);
+        }
+      }
+    }
+    return totalEvens;
+  }
+  /** numGreater(lowerBound): return a count of the number of nodes
+   * whose value is greater than lowerBound. */
+
+  numGreater(lowerBound) {
+    let totalGreater = 0;
+
+    // If the tree is empty return 0
+    if (this.root === null) return totalGreater;
+
+    const toVisitStack = [this.root];
+    while (toVisitStack.length) {
+      const current = toVisitStack.pop();
+      if (current.val > lowerBound) {
+        totalGreater++;
+      }
+
+      // Add the children to the stack
+      if (current.children.length) {
+        for (let child of current.children) {
+          toVisitStack.push(child);
+        }
+      }
+    }
+    return totalGreater;
+  }
 }
-
-/** countEvens(): count all of the nodes in the tree with even values. */
-
-// countEvens() {
-//
-// };
-
-/** numGreater(lowerBound): return a count of the number of nodes
- * whose value is greater than lowerBound. */
-
-// numGreater(lowerBound) {
-//
-// }
-// }
 
 module.exports = { Tree, TreeNode };
